@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="GymApp.LoginPage"
+             xmlns:local="clr-namespace:GymApp"
+             Title="LoginPage"
+             Shell.NavBarIsVisible="False"
+             Padding="40"
+             BindingContext="{x:Static local:App.loginViewModel}">
+    <VerticalStackLayout
+        VerticalOptions="CenterAndExpand">
+        <Label
+            x:Name="TitleLabel"
+            Text="PRO FORM FITNESS"
+            VerticalOptions="Center"
+            HorizontalOptions="Center"
+            FontSize="30"
+            FontAttributes="Bold"
+            TextColor="OrangeRed"/>
+        <Label
+            x:Name="LabelForUserName"
+            Text="Username"
+            VerticalOptions="Center"
+            HorizontalOptions="Start"
+            Margin="0,50,0,0"/>
+        <Entry
+            x:Name="UserNameEntry"
+            Placeholder="Username"
+            Margin="0,5,0,0"
+            BackgroundColor="LightGray"
+            Text="{Binding UserName}"/>
+        <Label
+            x:Name="LabelForPassword"
+            Text="Password"
+            VerticalOptions="Center"
+            HorizontalOptions="Start"
+            Margin="0,20,0,0"/>
+        <Entry
+            x:Name="PasswordEntry"
+            Placeholder="Password"
+            Margin="0,5,0,0"
+            BackgroundColor="LightGray"/>
+        <Button
+            x:Name="LoginButton"
+            Text="Login"
+            HorizontalOptions="CenterAndExpand"
+            Padding="40,0"
+            Margin="0,30,0,80"
+            BackgroundColor="OrangeRed"/>
+    </VerticalStackLayout>
+</ContentPage>
