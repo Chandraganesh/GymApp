@@ -39,13 +39,21 @@
             x:Name="PasswordEntry"
             Placeholder="Password"
             Margin="0,5,0,0"
-            BackgroundColor="LightGray"/>
+            BackgroundColor="LightGray"
+            Text="{Binding Password}"/>
         <Button
             x:Name="LoginButton"
             Text="Login"
             HorizontalOptions="CenterAndExpand"
             Padding="40,0"
             Margin="0,30,0,80"
-            BackgroundColor="OrangeRed"/>
+            BackgroundColor="OrangeRed"
+            IsEnabled="{Binding IsLoginButtonEnabled}"
+            Clicked="LoginButton_Clicked"/>
+        <Label
+            x:Name="ErrorText"
+            HorizontalOptions="CenterAndExpand"
+            Text="{Binding ErrorText}"
+            TextColor="DarkRed"/>
     </VerticalStackLayout>
 </ContentPage>
