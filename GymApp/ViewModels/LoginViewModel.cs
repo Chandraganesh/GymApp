@@ -5,9 +5,7 @@ using System.Windows.Input;
 namespace GymApp.ViewModels;
 public class LoginViewModel : ObservableObject
 {
-    #region Commands
     public ICommand LoginCommand{ get; private set; }
-    #endregion
     private string _userName;
     public string UserName
     {
@@ -30,7 +28,7 @@ public class LoginViewModel : ObservableObject
         }
     }
 
-    private bool _isLoginButtonEnabled;
+    private bool _isLoginButtonEnabled = true;
     public bool IsLoginButtonEnabled
     {
         get => _isLoginButtonEnabled;

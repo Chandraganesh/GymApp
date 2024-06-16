@@ -1,15 +1,14 @@
-﻿using GymApp.ViewModels;
+﻿using GymApp.Views;
+using GymApp.ViewModels;
 
 namespace GymApp;
 
 public partial class App : Application
 {
-    public static LoginViewModel loginViewModel { get; private set; }
 	public App()
 	{
 		InitializeComponent();
 		// MainPage = new AppShell();
-        loginViewModel = new();
         MainPage = new LoginPage();
 	}
 

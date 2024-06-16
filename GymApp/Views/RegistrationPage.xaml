@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="GymApp.Views.RegistrationPage"
+             xmlns:viewModels="clr-namespace:GymApp.ViewModels"
+             BindingContext="{viewModels:RegistrationViewModel}">
+    <ScrollView>
+        <VerticalStackLayout
+            Padding="20,20,10,0"
+            Spacing="20">
+            <Label
+                Text="Create new user"
+                Style="{StaticResource Headline}"
+                SemanticProperties.HeadingLevel="Level1"/>
+
+            <!-- First Name -->
+            <VerticalStackLayout>
+                <Label
+                    Text="First Name"/>
+                <Entry
+                    x:Name="FirstNameEntry"
+                    Placeholder="First Name"
+                    Text="{Binding FirstName}"/>
+            </VerticalStackLayout>
+
+            <!-- Last Name -->
+            <VerticalStackLayout>
+                <Label
+                    Text="Last Name"/>
+                <Entry
+                    x:Name="LastNameEntry"
+                    Placeholder="Last Name"
+                    Text="{Binding LastName}"/>
+            </VerticalStackLayout>
+
+            <!-- Address -->
+            <VerticalStackLayout>
+                <Label
+                    Text="Address"/>
+                <Entry
+                    x:Name="AddressEntry"
+                    Placeholder="E.g. Al Khuwair"
+                    Text="{Binding Address}"/>
+            </VerticalStackLayout>
+
+            <!-- Sex -->
+            <HorizontalStackLayout
+                RadioButtonGroup.GroupName="RadioGroupSex"
+                RadioButtonGroup.SelectedValue="{Binding Sex}">
+                <RadioButton
+                    x:Name="MaleRadioButton"
+                    GroupName="RadioGroupSex"
+                    Value="{Binding Male}"
+                    Content="Male"/>
+                <RadioButton
+                    x:Name="FemaleRadioButton"
+                    GroupName="RadioGroupSex"
+                    Value="{Binding Female}"
+                    Content="Female"/>
+            </HorizontalStackLayout>
+
+            <!-- Age -->
+            <HorizontalStackLayout
+                Spacing="30">
+                <Label
+                    Text="Age"
+                    VerticalOptions="Center"/>
+                <Entry
+                    x:Name="AgeEntry"
+                    VerticalOptions="Center"
+                    WidthRequest="100"
+                    Text="{Binding Age}"/>
+            </HorizontalStackLayout>
+
+            <!-- Contact -->
+            <HorizontalStackLayout
+                Spacing="30">
+                <Label
+                    Text="Contact no:"
+                    VerticalOptions="Center"/>
+                <Entry
+                    x:Name="ContactNumberEntry"
+                    VerticalOptions="Center"
+                    Placeholder="+96800000000"
+                    HorizontalOptions="StartAndExpand"
+                    Text="{Binding ContactNumber}"/>
+            </HorizontalStackLayout>
+
+            <!-- Nationality -->
+            <HorizontalStackLayout
+                Spacing="30">
+                <Label
+                    Text="Nationality"
+                    VerticalOptions="Center"/>
+                <Entry
+                    x:Name="NationalityEntry"
+                    Placeholder="INDIA"
+                    VerticalOptions="Center"
+                    HorizontalOptions="StartAndExpand"
+                    Text="{Binding Nationality}"/>
+            </HorizontalStackLayout>
+
+            <!-- Plan -->
+            <VerticalStackLayout
+                Spacing="0">
+                <Label
+                    Text="Plan"/>
+                <HorizontalStackLayout
+                    RadioButtonGroup.GroupName="PlanSelectionRadioGroup"
+                    RadioButtonGroup.SelectedValue="{Binding SelectedPlan}">
+                    <RadioButton
+                        x:Name="OneMonthRadioButton"
+                        Content="1 Month"
+                        Value="{Binding OneMonthPlan}"
+                        GroupName="PlanSelectionRadioGroup"/>
+                    <RadioButton
+                        x:Name="ThreeMonthsRadioButton"
+                        Content="3 Months"
+                        Value="{Binding ThreeMonthsPlan}"
+                        GroupName="PlanSelectionRadioGroup"/>
+                    <RadioButton
+                        x:Name="SixMonthsRadioButton"
+                        Content="6 Months"
+                        Value="{Binding SixMonthsPlan}"
+                        GroupName="PlanSelectionRadioGroup"/>
+                    <RadioButton
+                        x:Name="OneYearRadioButton"
+                        Content="1 Year"
+                        Value="{Binding OneYearPlan}"
+                        GroupName="PlanSelectionRadioGroup"/>
+                </HorizontalStackLayout>
+                <HorizontalStackLayout>
+                    <Label
+                        Text="Plan price"
+                        VerticalOptions="Center"/>
+                    <Entry
+                        x:Name="Price"
+                        HorizontalOptions="Start"
+                        WidthRequest="100"
+                        Text="{Binding PlanPrice}"
+                        VerticalOptions="Center"/>
+                </HorizontalStackLayout>
+            </VerticalStackLayout>
+
+            <HorizontalStackLayout
+                Spacing="30">
+                <Label
+                    Text="Discounted Price"
+                    VerticalOptions="Center"/>
+                <Entry
+                    x:Name="DiscountedPriceEntry"
+                    VerticalOptions="Center"
+                    WidthRequest="100"
+                    Text="{Binding DiscountedPrice}"/>
+            </HorizontalStackLayout>
+            <HorizontalStackLayout
+                Spacing="30">
+                <Label
+                    Text="Free months"
+                    VerticalOptions="Center"/>
+                <Picker
+                    Title="Select free months"
+                    ItemsSource="{Binding FreeMonthsOptions}"
+                    SelectedItem="{Binding FreeMonths}"
+                    VerticalOptions="Center">
+                </Picker>
+            </HorizontalStackLayout>
+
+            <Button
+                x:Name="SubmitButton"
+                Text="Submit"
+                HorizontalOptions="Fill"
+                Command="{Binding SubmitCommand}"/>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

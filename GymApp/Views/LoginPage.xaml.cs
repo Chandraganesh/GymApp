@@ -1,5 +1,6 @@
-namespace GymApp;
+namespace GymApp.Views;
 using GymApp.BL;
+using GymApp.ViewModels;
 
 public partial class LoginPage : ContentPage
 {
@@ -10,14 +11,16 @@ public partial class LoginPage : ContentPage
 
 	async void LoginButton_Clicked(object sender, EventArgs args)
 	{
+		LoginViewModel vm = BindingContext as LoginViewModel;
 		LoginBL loginBL = new LoginBL();
-        if(loginBL.Login(App.loginViewModel.UserName, App.loginViewModel.Password))
+		
+        if(loginBL.Login(vm.UserName, vm.Password))
         {
 			((App)Application.Current).MainPage = new AppShell();
         }
         else
         {
-            App.loginViewModel.ErrorText = "Invlid Login. Please try again";
+            vm.ErrorText = "Invlid Login. Please try again";
         }
 	}
 }
