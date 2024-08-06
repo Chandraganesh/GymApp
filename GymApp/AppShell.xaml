@@ -12,16 +12,8 @@
     </Shell.FlyoutHeader> -->
     <ShellContent
         Title="Home"
+        Route="home"
         ContentTemplate="{DataTemplate views:HomePage}"/>
-    <ShellContent
-        Title="Registration"
-        ContentTemplate="{DataTemplate views:RegistrationPage}"/>
-    <ShellContent
-        Title="Members"
-        ContentTemplate="{DataTemplate views:MembersPage}"/>
-    <ShellContent
-        Title="Reports"
-        ContentTemplate="{DataTemplate views:ReportsPage}"/>
     <Shell.FlyoutFooter>
         <Label
             Margin="50"

@@ -1,17 +1,19 @@
 ﻿using GymApp.Enums;
+using SQLite;
 
 namespace GymApp.Models;
 
 public class Member
 {
+    [PrimaryKey, AutoIncrement]
     public int MemberID { get; set; }
     public string FirstName { get; set; }
     public string LastName { get; set; }
     public string Address { get; set; }
     public Sex Sex { get; set; }
+    public int Age { get; set; }
     public string ContactNumber { get; set; }
     public string Nationality { get; set; }
-    public int Age { get; set; }
     public Plan Plan { get; set; }
     public int Price { get; set;}
     public bool IsDiscounted { get; set; }

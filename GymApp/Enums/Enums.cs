@@ -3,7 +3,8 @@
 public enum Sex
 {
     Male,
-    Female
+    Female,
+    Other
 }
 
 public enum Plan

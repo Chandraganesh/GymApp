@@ -2,13 +2,16 @@
 using System.Windows.Input;
 using GymApp.Enums;
 using GymApp.Models;
+using GymApp.DAL;
 
 namespace GymApp.ViewModels;
 
 public class RegistrationViewModel : ObservableObject
 {
-    public RegistrationViewModel()
+    public GymAppDataBase dataBase;
+    public RegistrationViewModel(GymAppDataBase _database)
     {
+        dataBase = _database;
         SubmitCommand = new Command(Submit);
     }
 
@@ -117,29 +120,74 @@ public class RegistrationViewModel : ObservableObject
         set => SetProperty(ref _freeMonths, value);
     }
 
-    private void Submit()
+    private async void Submit()
     {
-        //Do later : Check form completion and show confirmation preview page
-        bool isDiscounted = DiscountedPrice < PlanPrice;
+        try
+        {
+            //Check form completion
+            if(CheckFormCompletion())
+            {
+                //To do : Confirmation preview page
+                bool isDiscounted = DiscountedPrice < PlanPrice;
 
-        Member member = new Member{
-            FirstName = FirstName,
-            LastName = LastName,
-            Address = Address,
-            Sex = Sex,
-            Age = Age,
-            ContactNumber = ContactNumber,
-            Nationality = Nationality,
-            Plan = SelectedPlan,
-            Price = PlanPrice,
-            IsDiscounted = isDiscounted,
-            GivenPrice = isDiscounted ? DiscountedPrice : PlanPrice,
-            FreeMonths = FreeMonths,
-            SignedDate = DateTime.Now,
-            ExpiryDate = DateTime.Now.AddMonths(MembershipDurationInMonths(SelectedPlan, FreeMonths))
-        };
+                Member member = new Member{
+                    FirstName = FirstName,
+                    LastName = LastName,
+                    Address = Address,
+                    Sex = Sex,
+                    Age = Age,
+                    ContactNumber = ContactNumber,
+                    Nationality = Nationality,
+                    Plan = SelectedPlan,
+                    Price = PlanPrice,
+                    IsDiscounted = isDiscounted,
+                    GivenPrice = isDiscounted ? DiscountedPrice : PlanPrice,
+                    FreeMonths = FreeMonths,
+                    SignedDate = DateTime.Now,
+                    ExpiryDate = DateTime.Now.AddMonths(MembershipDurationInMonths(SelectedPlan, FreeMonths))
+                };
 
-        //Save/update member to DB
+                //Save/update member to DB
+                int success = await dataBase.CreateOrUpdateMemberAsync(member);
+                // var members = await dataBase.GetAllMembersAsync();
+                if(success == 1)
+                {
+                    await Application.Current.MainPage.DisplayAlert("Success", "New user created", "Ok");
+                    await Shell.Current.GoToAsync("//home");
+                }
+                else
+                {
+                    await Application.Current.MainPage.DisplayAlert("Failure", "Something went wrong, pleae try again", "Ok");
+                }
+            }
+            else
+            {
+                await Application.Current.MainPage.DisplayAlert("Incomplete", "Fill in the fields marked in red", "Ok");
+            }
+        }
+        catch(Exception ex)
+        {
+
+        }
+    }
+
+    bool CheckFormCompletion()
+    {
+        bool completion = false;
+        try
+        {
+            if(!string.IsNullOrEmpty(FirstName) && !string.IsNullOrEmpty(LastName) && !string.IsNullOrEmpty(Address) ||
+                Age > 0 && !string.IsNullOrEmpty(ContactNumber) && !string.IsNullOrEmpty(Nationality) && 
+                PlanPrice > 0)
+            {
+                completion = true;
+            }
+        }
+        catch(Exception ex)
+        {
+
+        }
+        return completion;
     }
 
     private int MembershipDurationInMonths(Plan selectedPlan, int freeMonths)
@@ -156,7 +204,7 @@ public class RegistrationViewModel : ObservableObject
             case Plan.OneYear: numberOfMonths += 12;
             break;
         }
-        numberOfMonths += FreeMonths;
+        numberOfMonths += freeMonths;
 
         return numberOfMonths;
     }

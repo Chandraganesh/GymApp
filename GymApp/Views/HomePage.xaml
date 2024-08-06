@@ -2,5 +2,66 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="GymApp.Views.HomePage">
-    
+    <Grid
+        Padding="20"
+        RowSpacing="10"
+        ColumnSpacing="10"
+        VerticalOptions="Start">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="100"/>
+        </Grid.RowDefinitions>
+        <Button
+            Grid.Row="0"
+            Grid.Column="0"
+            x:Name="NewRegistration"
+            VerticalOptions="FillAndExpand"
+            HorizontalOptions="FillAndExpand"
+            Text="New Registration"
+            BackgroundColor="Crimson"
+            FontSize="16"
+            FontAttributes="Bold"
+            Command="{Binding ItemSelectionCommand}"
+            CommandParameter="NEWREGISTRATION"/>
+        <Button
+            Grid.Row="0"
+            Grid.Column="1"
+            x:Name="Members"
+            VerticalOptions="FillAndExpand"
+            HorizontalOptions="FillAndExpand"
+            Text="Members"
+            BackgroundColor="DarkOliveGreen"
+            FontSize="16"
+            FontAttributes="Bold"
+            Command="{Binding ItemSelectionCommand}"
+            CommandParameter="MEMBERS"/>
+        <Button
+            Grid.Row="1"
+            Grid.Column="0"
+            x:Name="Reports"
+            VerticalOptions="FillAndExpand"
+            HorizontalOptions="FillAndExpand"
+            Text="Reports"
+            BackgroundColor="DarkOliveGreen"
+            FontSize="16"
+            FontAttributes="Bold"
+            Command="{Binding ItemSelectionCommand}"
+            CommandParameter="REPORTS"/>
+        <Button
+            Grid.Row="1"
+            Grid.Column="1"
+            x:Name="Enquiries"
+            VerticalOptions="FillAndExpand"
+            HorizontalOptions="FillAndExpand"
+            Text="Enquiries"
+            BackgroundColor="Crimson"
+            FontSize="16"
+            FontAttributes="Bold"
+            Command="{Binding ItemSelectionCommand}"
+            CommandParameter="ENQUIRIES"/>
+    </Grid>
 </ContentPage>

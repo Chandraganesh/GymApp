@@ -1,4 +1,7 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using GymApp.DAL;
+using GymApp.ViewModels;
+using GymApp.Views;
+using Microsoft.Extensions.Logging;
 
 namespace GymApp;
 
@@ -18,6 +21,10 @@ public static class MauiProgram
 #if DEBUG
 		builder.Logging.AddDebug();
 #endif
+		builder.Services.AddSingleton<GymAppDataBase>();
+		builder.Services.AddSingleton<RegistrationViewModel>();
+		builder.Services.AddSingleton<MembersViewModel>();
+		builder.Services.AddSingleton<HomeViewModel>();
 
 		return builder.Build();
 	}
