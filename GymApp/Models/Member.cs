@@ -7,8 +7,12 @@ public class Member
 {
     [PrimaryKey, AutoIncrement]
     public int MemberID { get; set; }
+    [Ignore]
+    public string DisplayInitial { get => FirstName?.ToCharArray()?.FirstOrDefault().ToString() + LastName?.ToCharArray()?.FirstOrDefault(); }
     public string FirstName { get; set; }
     public string LastName { get; set; }
+    [Ignore]
+    public string FullName { get => FirstName + " " + LastName; }
     public string Address { get; set; }
     public Sex Sex { get; set; }
     public int Age { get; set; }
