@@ -33,4 +33,11 @@ public class MembersViewModel : ObservableObject
         get => _members;
         set => SetProperty(ref _members, value);
     }
+
+    private Member _selectedMember;
+    public Member SelectedMember
+    {
+        get => _selectedMember;
+        set => SetProperty(ref _selectedMember, value);
+    }
 }
